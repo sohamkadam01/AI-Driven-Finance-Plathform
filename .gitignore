@@ -1,0 +1,91 @@
+# ─── Secrets & environment ────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.env
+
+# ─── application.properties contains live API keys — never commit it ──────────
+project/src/main/resources/application.properties
+
+# ─── Loose root-level files (personal, not part of the codebase) ─────────────
+/*.png
+/*.jpg
+/*.jpeg
+/*.gif
+/*.webp
+/*.pdf
+/*.mp4
+/*.mp3
+
+# ─── Frontend ─────────────────────────────────────────────────────────────────
+my-react-app/node_modules/
+my-react-app/dist/
+my-react-app/build/
+my-react-app/.vite/
+node_modules/
+dist/
+coverage/
+
+# NOTE: my-react-app/src/assets/ is intentionally NOT ignored.
+# Those images are imported directly by React components and are required
+# for the app to render correctly.
+
+# ─── Java / Spring Boot ───────────────────────────────────────────────────────
+project/target/
+target/
+*.class
+*.jar
+*.war
+!**/src/main/**/target/
+!**/src/test/**/target/
+HELP.md
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+.mvn/wrapper/maven-wrapper.jar
+/nbproject/private/
+/nbbuild/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# ─── Python / OCR microservice ────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+python_ORC_SYSTEM/__pycache__/
+python_ORC_SYSTEM/cache/
+python_ORC_SYSTEM/ai_cache/
+python_ORC_SYSTEM/models/
+python_ORC_SYSTEM/*.log
+*.log
+
+# ─── Editor & OS ──────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.iws
+*.iml
+*.ipr
+*.code-workspace
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Temp & misc ──────────────────────────────────────────────────────────────
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp

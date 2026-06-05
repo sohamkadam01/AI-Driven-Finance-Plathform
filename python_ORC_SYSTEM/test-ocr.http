@@ -1,0 +1,13 @@
+### Test OCR Service - Health Check
+GET http://localhost:8000/health
+
+### Test OCR Service - Extract Text from Receipt
+POST http://localhost:8000/ocr/extract
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary
+
+------WebKitFormBoundary
+Content-Disposition: form-data; name="file"; filename="receipt.jpg"
+Content-Type: image/jpeg
+
+< C:\Users\Admin\Desktop\finance\photo.png
+------WebKitFormBoundary--

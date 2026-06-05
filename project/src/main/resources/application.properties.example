@@ -1,0 +1,94 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# application.properties.example
+# Copy this file to application.properties and fill in your own values.
+# NEVER commit application.properties directly — it contains secrets.
+# ─────────────────────────────────────────────────────────────────────────────
+
+spring.application.name=project
+
+# ===============================
+# Database Configuration (MySQL)
+# ===============================
+spring.datasource.url=jdbc:mysql://localhost:3306/finance_db?useSSL=false&serverTimezone=Asia/Kolkata&allowPublicKeyRetrieval=true
+spring.datasource.username=YOUR_DB_USERNAME
+spring.datasource.password=YOUR_DB_PASSWORD
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# ===============================
+# JPA / Hibernate Configuration
+# ===============================
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+spring.jpa.properties.hibernate.format_sql=true
+
+# ===============================
+# Logging
+# ===============================
+logging.level.org.springframework.web=DEBUG
+logging.level.org.hibernate=INFO
+
+# ===============================
+# Server Configuration
+# ===============================
+server.port=8080
+server.error.include-message=always
+
+# ===============================
+# Jackson Configuration
+# ===============================
+spring.jackson.serialization.write-dates-as-timestamps=false
+spring.jackson.time-zone=Asia/Kolkata
+
+# ===============================
+# JWT Configuration
+# ===============================
+# Use a strong random base64 string (min 64 characters)
+app.jwtSecret=YOUR_STRONG_JWT_SECRET_KEY_MIN_64_CHARS
+app.jwtExpirationMs=86400000
+
+# ===============================
+# OpenRouter / AI Configuration
+# ===============================
+spring.ai.openai.api-key=YOUR_OPENROUTER_API_KEY
+openrouter.api.key=${spring.ai.openai.api-key}
+spring.ai.openai.base-url=https://openrouter.ai/api/v1
+spring.ai.openai.chat.options.model=stepfun/step-3.5-flash
+spring.ai.openai.chat.options.temperature=0.7
+spring.ai.openai.chat.options.max-tokens=4096
+
+# ===============================
+# Ollama (Local AI) Configuration
+# ===============================
+ollama.url=http://localhost:11434
+ollama.model=qwen2.5:3b
+openrouter.model=stepfun/step-3.5-flash
+
+# ===============================
+# Python OCR Service Configuration
+# ===============================
+ocr.service.url=http://localhost:8000
+ocr.service.timeout=30000
+
+# ===============================
+# File Upload Configuration
+# ===============================
+spring.servlet.multipart.max-file-size=10MB
+spring.servlet.multipart.max-request-size=10MB
+
+# ===============================
+# Email Configuration (Gmail SMTP)
+# ===============================
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=YOUR_GMAIL@gmail.com
+spring.mail.password=YOUR_GMAIL_APP_PASSWORD
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+spring.mail.properties.mail.smtp.starttls.required=true
+
+# ===============================
+# App URLs
+# ===============================
+app.frontend.url=http://localhost:5173
+app.password-reset.expiry-minutes=15
