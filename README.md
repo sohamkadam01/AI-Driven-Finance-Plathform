@@ -1,76 +1,370 @@
-AI-Driven Finance Platform
-A full-stack personal finance management system powered by AI — built with React 19, Spring Boot 3, Python FastAPI (OCR), and a multi-tier LLM chatbot.
+# 💰 AI-Driven Finance Platform
 
-Tech Stack
-Layer	Technology
-Frontend	React 19 + Vite + Tailwind CSS + Framer Motion + Recharts
-Backend	Spring Boot 3 + Spring Security + JWT + JPA/Hibernate + MySQL 8
-OCR Microservice	Python FastAPI + EasyOCR + PaddleOCR + Tesseract + OpenCV
-AI / LLM	Ollama (local, qwen2.5:3b) → OpenRouter API (cloud fallback)
-Real-Time	WebSocket + SSE streaming
-Features
-Dashboard — Net Worth, Savings Rate, Financial Health Score, Budget Progress, Cash Flow charts
-Transactions — Add, filter, categorize income and expenses
-OCR Receipt Scanner — Upload JPEG/PNG/PDF receipts; AI auto-extracts merchant, amount, date, category
-SmartBot Chatbot — Natural-language financial queries with 3-tier LLM fallback and SSE streaming
-Anomaly Detection — Flags unusual spending with LOW → CRITICAL severity grading
-Budget Planner — Set limits per category, track utilisation, get real-time alerts
-Investment Portfolio — Track holdings, view AI-generated investment advice
-Predictions — Hybrid pipeline (Ollama → OpenRouter → Statistical math) for expense forecasting
-Bill Reminders — Recurring payment tracking with WebSocket due-date alerts
-Financial Health Scoring — 0–100 score computed from savings rate, budget adherence, and net worth
-Project Structure
-finance-project/
-├── project/                  # Spring Boot 3 backend (port 8080)
-│   └── src/main/java/com/College_project/project/
-│       ├── controller/       # REST controllers
-│       ├── service/          # 35+ business logic services
-│       ├── models/           # 16 JPA entities
-│       ├── repository/       # Spring Data JPA repositories
-│       ├── security/         # JWT filter + SecurityConfig
-│       ├── config/           # WebSocket, CORS config
-│       └── enums/            # AlertType, TransactionType, etc.
-├── my-react-app/             # React 19 + Vite frontend (port 5173)
-│   └── src/
-│       ├── components/       # Dashboard, Transactions, Budgets, etc.
-│       ├── services/         # Axios API client
-│       └── assets/           # Images and icons
-└── python_ORC_SYSTEM/        # Python FastAPI OCR microservice (port 8000)
-    └── ocr_service.py        # EasyOCR + PaddleOCR + Tesseract pipeline
-Getting Started
-Prerequisites
-Java 17+
-Node.js 18+
-Python 3.9+
-MySQL 8
-Ollama installed locally
-1. Database
-CREATE DATABASE finance_db;
-2. Backend (Spring Boot)
-cd project
-cp src/main/resources/application.properties.example src/main/resources/application.properties
-# Fill in your DB credentials, API keys, etc.
-mvn spring-boot:run
-3. Frontend (React)
-cd my-react-app
-npm install
-npm run dev
-4. OCR Microservice (Python)
-cd python_ORC_SYSTEM
-python -m venv venv
-venv\Scripts\activate      # Windows
-pip install -r requirements.txt
-uvicorn ocr_service:app --host 0.0.0.0 --port 8000
-5. Ollama (Local LLM)
-ollama pull qwen2.5:3b
-ollama serve
-Environment Setup
-Copy project/src/main/resources/application.properties.example to application.properties and set:
+> A full-stack AI-powered personal finance management platform that helps users track expenses, manage budgets, scan receipts using OCR, receive AI-powered financial insights, predict future spending, and improve financial health through intelligent analytics.
 
-Key	Description
-spring.datasource.username	MySQL username
-spring.datasource.password	MySQL password
-app.jwtSecret	Strong random string (min 64 chars)
-spring.ai.openai.api-key	Your OpenRouter API key
-spring.mail.username	Gmail address for email alerts
-spring.mail.password	Gmail app password
+---
+
+# 🚀 Overview
+
+The **AI-Driven Finance Platform** is an intelligent personal finance management system built using **Spring Boot**, **React**, **Python FastAPI**, and modern AI technologies.
+
+It enables users to manage income and expenses, monitor budgets, analyze spending behavior, receive AI-generated financial recommendations, scan receipts using OCR, predict future expenses, and visualize financial health through an interactive dashboard.
+
+The platform integrates multiple AI services including OCR, anomaly detection, predictive analytics, and an intelligent financial chatbot to provide a smarter financial management experience.
+
+---
+
+# ✨ Core Features
+
+## 📊 Interactive Financial Dashboard
+
+Monitor your financial health through a modern dashboard.
+
+Features include:
+
+* Net Worth
+* Monthly Income
+* Monthly Expenses
+* Savings Rate
+* Cash Flow Analysis
+* Financial Health Score
+* Budget Utilization
+* Spending Trends
+* Interactive Charts
+* Category-wise Expense Breakdown
+
+---
+
+## 💳 Transaction Management
+
+Easily manage daily finances.
+
+Features:
+
+* Add Income
+* Add Expenses
+* Edit Transactions
+* Delete Transactions
+* Filter by Date
+* Search Transactions
+* Category Management
+* Transaction History
+* Monthly Reports
+
+---
+
+## 🧾 AI Receipt Scanner (OCR)
+
+Automatically extract transaction details from receipts.
+
+Supported formats:
+
+* JPG
+* PNG
+* PDF
+
+Extracts:
+
+* Merchant Name
+* Amount
+* Date
+* Category
+* Payment Information
+
+Powered by:
+
+* EasyOCR
+* PaddleOCR
+* Tesseract
+* OpenCV
+
+---
+
+## 🤖 AI Financial Assistant
+
+An intelligent chatbot capable of answering finance-related questions using multiple LLM providers.
+
+Capabilities:
+
+* Spending analysis
+* Budget recommendations
+* Financial summaries
+* Investment suggestions
+* Transaction explanations
+* Savings advice
+* Expense categorization
+
+Supports real-time streaming responses.
+
+---
+
+## 🧠 Multi-Provider AI Pipeline
+
+Automatic provider fallback ensures high availability.
+
+```text id="h31xy7"
+Ollama (Local)
+        │
+Unavailable
+        ▼
+OpenRouter
+        │
+Unavailable
+        ▼
+Statistical Prediction Engine
+```
+
+Supported Models:
+
+* qwen2.5:3b (Ollama)
+* OpenRouter Models
+
+---
+
+## 📈 AI Expense Prediction
+
+Predict future financial behavior using historical spending patterns.
+
+Features:
+
+* Monthly expense forecasting
+* Budget forecasting
+* Spending trend analysis
+* Future cash flow estimation
+* Category-wise prediction
+
+---
+
+## 🚨 Smart Anomaly Detection
+
+Automatically detect unusual spending behavior.
+
+Severity Levels:
+
+* 🟢 Low
+* 🟡 Medium
+* 🟠 High
+* 🔴 Critical
+
+Examples:
+
+* Abnormally large purchases
+* Unexpected spending spikes
+* Budget overrun detection
+* Irregular transaction patterns
+
+---
+
+## 💵 Budget Planner
+
+Manage budgets intelligently.
+
+Features:
+
+* Category-wise budgets
+* Budget progress tracking
+* Remaining budget calculation
+* Budget utilization charts
+* Overspending alerts
+* Monthly planning
+
+---
+
+## 📈 Investment Portfolio
+
+Track investments and monitor portfolio growth.
+
+Features:
+
+* Portfolio overview
+* Holdings management
+* Investment allocation
+* Performance tracking
+* AI-generated investment insights
+
+---
+
+## 🔔 Smart Bill Reminder System
+
+Never miss recurring payments.
+
+Features:
+
+* Due-date reminders
+* Recurring bill tracking
+* WebSocket notifications
+* Email reminders
+* Payment history
+
+---
+
+## ❤️ Financial Health Score
+
+Generate an overall financial wellness score (0–100).
+
+Calculated using:
+
+* Savings Rate
+* Budget Adherence
+* Income Stability
+* Expense Ratio
+* Net Worth
+* Spending Behavior
+
+Provides personalized recommendations to improve financial health.
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+* React 19
+* Vite
+* Tailwind CSS
+* Framer Motion
+* Recharts
+* Axios
+
+---
+
+## Backend
+
+* Java 17
+* Spring Boot 3
+* Spring Security
+* JWT Authentication
+* Spring Data JPA
+* Hibernate
+* MySQL
+
+---
+
+## AI & Machine Learning
+
+* Ollama
+* OpenRouter
+* Predictive Analytics
+* Financial Insights Engine
+
+---
+
+## OCR Microservice
+
+* Python FastAPI
+* EasyOCR
+* PaddleOCR
+* Tesseract OCR
+* OpenCV
+
+---
+
+## Real-Time Communication
+
+* WebSockets
+* Server-Sent Events (SSE)
+
+---
+
+# 🏗 High-Level Architecture
+
+```text id="gdzxjj"
+               React Frontend
+                      │
+                      ▼
+            Spring Boot Backend
+                      │
+      ┌───────────────┼────────────────┐
+      ▼               ▼                ▼
+ MySQL Database   AI Services     WebSocket/SSE
+                      │
+      ┌───────────────┼────────────────┐
+      ▼               ▼                ▼
+ OCR Service     LLM Manager   Prediction Engine
+      │               │                │
+      ▼               ▼                ▼
+EasyOCR       Ollama/OpenRouter   Financial Analytics
+PaddleOCR
+Tesseract
+```
+
+---
+
+# 📂 Project Structure
+
+```text id="vwkwyn"
+finance-platform/
+│
+├── backend/
+│   ├── controller/
+│   ├── service/
+│   ├── repository/
+│   ├── models/
+│   ├── security/
+│   ├── config/
+│   ├── websocket/
+│   └── prediction/
+│
+├── frontend/
+│   ├── components/
+│   ├── pages/
+│   ├── services/
+│   ├── hooks/
+│   └── assets/
+│
+├── ocr-service/
+│   ├── ocr_service.py
+│   ├── models/
+│   └── utils/
+│
+├── screenshots/
+│
+└── README.md
+```
+
+---
+
+# 📸 Key Modules
+
+* 📊 Financial Dashboard
+* 💳 Transaction Manager
+* 🧾 OCR Receipt Scanner
+* 🤖 AI Financial Chatbot
+* 📈 Expense Prediction
+* 🚨 Anomaly Detection
+* 💵 Budget Planner
+* 📈 Investment Portfolio
+* 🔔 Bill Reminder System
+* ❤️ Financial Health Score
+
+---
+
+# 🚀 Future Enhancements
+
+* 📱 Mobile Application
+* 🏦 Bank Account Integration
+* 💳 Automatic Transaction Sync
+* 📄 AI Tax Report Generation
+* 📊 Personalized Financial Goals
+* 🤝 Family Expense Sharing
+* 🌍 Multi-Currency Support
+* 📈 Stock Market Integration
+* 🪙 Cryptocurrency Portfolio Tracking
+* 🎤 Voice-Based Financial Assistant
+* 🔐 Biometric Authentication
+* ☁️ Cloud Deployment with Docker & Kubernetes
+
+---
+
+# 👨‍💻 Author
+
+**Soham Kadam**
+
+* GitHub: https://github.com/sohamkadam01
+* LinkedIn: https://linkedin.com/in/kadamsoham0015
+
+---
+
+# ⭐ Support
+
+If you found this project useful, consider giving it a **⭐ Star** on GitHub. Your support helps improve the project and motivates future development.
